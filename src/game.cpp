@@ -40,3 +40,13 @@ void Minesweeper::generate_board(int rows, int cols, int n_mines) {
         }
     }
 }
+
+void Minesweeper::display_mines() {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << grid[i][j].has_mine << ' ';
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
