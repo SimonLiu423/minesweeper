@@ -43,10 +43,8 @@ void Minesweeper::remove_mine(int row, int col) {
 }
 
 void Minesweeper::generate_board(int rows, int cols, int n_mines) {
-    // Set game properties
-    this->rows = rows;
-    this->cols = cols;
-    this->n_mines = n_mines;
+    // Initialize Minesweeper
+    *this = Minesweeper(rows, cols, n_mines);
 
     // Initialize grid
     grid.resize(rows, vector<Cell>(cols, Cell(false, 0)));
