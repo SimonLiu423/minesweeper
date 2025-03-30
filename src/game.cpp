@@ -7,20 +7,22 @@ static inline bool index_in_range(int row, int col, int n_row, int n_col) {
 }
 
 void Minesweeper::place_mine() {
-    int r = rand() % rows;
-    int c = rand() % cols;
-    if (!grid[r][c].has_mine) {
-        // If there is no mine, place one
-        grid[r][c].has_mine = true;
+    int r, c;
+    do {
+        r = rand() % rows;
+        c = rand() % cols;
+    } while (grid[r][c].has_mine);  // Choose another cell if mine already exists
 
-        // Update adjacent cells
-        for (int dr = -1; dr <= 1; dr++) {
-            for (int dc = -1; dc <= 1; dc++) {
-                int nr = r + dr;
-                int nc = c + dc;
-                if (index_in_range(nr, nc, rows, cols)) {
-                    grid[nr][nc].adj_mines++;
-                }
+    // Place mine
+    grid[r][c].has_mine = true;
+
+    // Update adjacent cells
+    for (int dr = -1; dr <= 1; dr++) {
+        for (int dc = -1; dc <= 1; dc++) {
+            int nr = r + dr;
+            int nc = c + dc;
+            if (index_in_range(nr, nc, rows, cols)) {
+                grid[nr][nc].adj_mines++;
             }
         }
     }
