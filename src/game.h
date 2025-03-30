@@ -12,7 +12,10 @@ class Minesweeper {
    private:
     int rows, cols;
     int n_mines;
+    bool is_revealed;
     vector<vector<Cell> > grid;
+    void place_mine();
+    void remove_mine(int row, int col);
 
    public:
     void generate_board(int rows, int cols, int n_mines);
