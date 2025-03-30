@@ -23,4 +23,5 @@ class Minesweeper {
     void generate_board(int rows, int cols, int n_mines);
     int reveal(int row, int col);
     void display_mines();
+    void display_adj();
 };

@@ -92,3 +92,15 @@ void Minesweeper::display_mines() {
     }
     cout << endl;
 }
+
+void Minesweeper::display_adj() {
+    assert(rows > 0 && cols > 0);  // Ensure the board is generated already
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << grid[i][j].adj_mines << ' ';
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
