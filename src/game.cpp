@@ -58,7 +58,7 @@ void Minesweeper::generate_board(int rows, int cols, int n_mines) {
     *this = Minesweeper(rows, cols, n_mines);
 
     // Initialize grid
-    grid.resize(rows, vector<Cell>(cols, Cell(false, 0)));
+    grid.resize(rows, vector<Cell>(cols, Cell()));
 
     // Randomly place mines
     int placed_mines = 0;

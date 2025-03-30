@@ -5,7 +5,7 @@ using namespace std;
 struct Cell {
     bool has_mine;
     int adj_mines;
-    Cell(bool _has_mine, int _adj_mines) : has_mine(_has_mine), adj_mines(_adj_mines) {}
+    Cell() : has_mine(false), adj_mines(0) {}
 };
 
 class Minesweeper {
