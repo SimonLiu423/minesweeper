@@ -1,5 +1,6 @@
 #include "game.h"
 
+#include <cassert>
 #include <iostream>
 
 static inline bool index_in_range(int row, int col, int n_row, int n_col) {
@@ -7,6 +8,8 @@ static inline bool index_in_range(int row, int col, int n_row, int n_col) {
 }
 
 void Minesweeper::place_mine() {
+    assert(rows > 0 && cols > 0);  // Ensure the board is generated already
+
     int r, c;
     do {
         r = rand() % rows;
@@ -29,6 +32,9 @@ void Minesweeper::place_mine() {
 }
 
 void Minesweeper::remove_mine(int row, int col) {
+    assert(rows > 0 && cols > 0);                  // Ensure the board is generated already
+    assert(index_in_range(row, col, rows, cols));  // Ensure given index is within the board
+    assert(grid[row][col].has_mine);               // Ensure the cell has mine set
     // Remove mine
     grid[row][col].has_mine = false;
 
@@ -45,6 +51,9 @@ void Minesweeper::remove_mine(int row, int col) {
 }
 
 void Minesweeper::generate_board(int rows, int cols, int n_mines) {
+    assert(rows > 0 && cols > 0);                    // Ensure `rows` and `cols` values are positive
+    assert(n_mines >= 0 && n_mines <= rows * cols);  // Ensure `n_mines` is non-negative and does not exceed number of total cells
+
     // Initialize Minesweeper
     *this = Minesweeper(rows, cols, n_mines);
 
@@ -61,6 +70,9 @@ void Minesweeper::generate_board(int rows, int cols, int n_mines) {
 }
 
 int Minesweeper::reveal(int row, int col) {
+    assert(rows > 0 && cols > 0);                  // Ensure the board is generated already
+    assert(index_in_range(row, col, rows, cols));  // Ensure given index is within the board
+
     if (!is_revealed && grid[row][col].has_mine) {
         remove_mine(row, col);
         place_mine();
@@ -70,6 +82,8 @@ int Minesweeper::reveal(int row, int col) {
 }
 
 void Minesweeper::display_mines() {
+    assert(rows > 0 && cols > 0);  // Ensure the board is generated already
+
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
             cout << grid[i][j].has_mine << ' ';
